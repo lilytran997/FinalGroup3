@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FinalGroup3</string>
+    <string name="welcome">Weclcome to My Chat App!!!</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name ="signin">Login to your Account</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_user">Username</string>
+    <string name="hint_pass">Password</string>
+    <string name="btn_reg">Create</string>
+    <string name="create">Create an Account</string>
+</resources>
