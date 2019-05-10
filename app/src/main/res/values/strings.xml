@@ -3,10 +3,15 @@
     <string name="welcome">Weclcome to My Chat App!!!</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name ="signin">Login to your Account</string>
+    <string name="signin">Login to your Account</string>
     <string name="hint_email">Email</string>
     <string name="hint_user">Username</string>
     <string name="hint_pass">Password</string>
     <string name="btn_reg">Create</string>
     <string name="create">Create an Account</string>
+    <string name="logout">Log Out</string>
+    <string name="search">Search</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
