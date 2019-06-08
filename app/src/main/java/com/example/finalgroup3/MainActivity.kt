@@ -25,9 +25,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var viewPager: ViewPager
-    lateinit var tab_Layout: TabLayout
+    private lateinit var tab_Layout: TabLayout
     private lateinit var database: DatabaseReference
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -114,10 +114,10 @@ class MainActivity : AppCompatActivity() {
         return false
     }
     class ViewStaticPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm){
-        val fragments: MutableList<Fragment> = ArrayList<Fragment>()
-        val titles: MutableList<String> = ArrayList<String>()
+        private val fragments: MutableList<Fragment> = ArrayList()
+        private val titles: MutableList<String> = ArrayList()
         override fun getItem(position: Int): Fragment {
-            return fragments.get(position)
+            return fragments[position]
         }
 
         override fun getCount(): Int {
@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
-            return titles.get(position)
+            return titles[position]
         }
         fun addFragment(fragment: Fragment, title:String){
             fragments.add(fragment)

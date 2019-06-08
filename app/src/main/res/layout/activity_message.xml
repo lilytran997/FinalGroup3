@@ -24,19 +24,19 @@
                 android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/mImage"
+                    android:id="@+id/Image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/user"
                     app:civ_border_color="@color/colorPrimary"
                     app:civ_border_width="4dp" />
                 <TextView
-                    android:id="@+id/name"
+                    android:id="@+id/fName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
-                    android:layout_toRightOf="@id/mImage"
+                    android:layout_toRightOf="@id/Image"
                     android:textColor="#ffff"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -46,8 +46,8 @@
                     android:id="@+id/sttOn"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:layout_below="@id/name"
-                    android:layout_toEndOf="@id/mImage"
+                    android:layout_below="@id/fName"
+                    android:layout_toEndOf="@id/Image"
                     tools:ignore="ContentDescription"
                     android:background="@drawable/ic_on"
                     android:layout_marginStart="-18dp"
@@ -57,8 +57,8 @@
                     android:id="@+id/sttOff"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:layout_below="@id/name"
-                    android:layout_toEndOf="@id/mImage"
+                    android:layout_below="@id/fName"
+                    android:layout_toEndOf="@id/Image"
                     tools:ignore="ContentDescription"
                     android:background="@drawable/ic_off"
                     android:layout_marginStart="-18dp"
@@ -74,7 +74,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appbar"
-        android:layout_above="@id/text_mess"/>
+        android:layout_above="@id/text_mess"
+        android:padding="5dp"/>
     <RelativeLayout
         android:id="@+id/text_mess"
         android:layout_width="match_parent"
@@ -90,7 +91,7 @@
             android:hint="@string/sendMess"
             android:inputType="text"
             android:layout_toStartOf="@+id/sendText"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="Autofill,RtlHardcoded" />
 
         <ImageButton
             android:id="@+id/sendText"

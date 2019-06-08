@@ -9,13 +9,12 @@ import com.example.finalgroup3.model.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_profile.*
-
+@SuppressLint("SetTextI18n")
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "PrivatePropertyName", "SpellCheckingInspection")
 class ProfileActivity : AppCompatActivity() {
     private lateinit var UserDatabase: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var mUserId: String
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)

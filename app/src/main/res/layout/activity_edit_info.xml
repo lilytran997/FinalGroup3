@@ -63,6 +63,7 @@
             android:layout_marginTop="10dp"
             android:hint="@string/myStatus"
             android:inputType="text"
+            android:maxLines="3"
             tools:ignore="Autofill" />
         <ImageButton
             android:id="@+id/change_status"

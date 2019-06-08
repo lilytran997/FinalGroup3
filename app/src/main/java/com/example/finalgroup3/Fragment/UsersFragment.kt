@@ -57,7 +57,6 @@ class UsersFragment : Fragment() {
                     }
                 }
             }
-
         })
     }
     override fun onCreateView(
