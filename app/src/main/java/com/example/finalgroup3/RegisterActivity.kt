@@ -8,11 +8,11 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register.*
 
+@Suppress("LocalVariableName")
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -59,11 +59,11 @@ class RegisterActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     val userId = user!!.uid
                     //push  database
-                    val hashMap:HashMap<String, String> = HashMap<String, String>()
-                    hashMap.put("id", userId)
-                    hashMap.put("username", username)
-                    hashMap.put("ImageURL", "default")
-                    hashMap.put("status", "Hi there, I'm using Aloha Chat App")
+                    val hashMap:HashMap<String, String> = HashMap()
+                    hashMap["id"] = userId
+                    hashMap["username"] = username
+                    hashMap["ImageURL"] = "default"
+                    hashMap["status"] = "Hi there, I'm using Aloha Chat App"
                     databaseReference.child(userId).setValue(hashMap)
                         .addOnCompleteListener(this) {
                             if (task.isSuccessful) {

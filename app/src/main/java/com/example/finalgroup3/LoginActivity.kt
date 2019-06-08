@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
+@Suppress("LocalVariableName")
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -32,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         val text_pass: String = pass.text.toString()
 
         if ((TextUtils.isEmpty(text_email)) || (TextUtils.isEmpty(text_pass))) {
-            Toast.makeText(this@LoginActivity, "All fileds are required", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this@LoginActivity, "All fileds are required", Toast.LENGTH_SHORT).show()
         } else {
             auth.signInWithEmailAndPassword(text_email, text_pass)
                 .addOnCompleteListener(this) { task ->

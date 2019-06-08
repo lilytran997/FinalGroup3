@@ -21,5 +21,8 @@
     <string name="todo">TODO</string>
     <string name="send">Send Message</string>
     <string name="setting">settings</string>
-    <string name="sendMess">Type a message...</string>
+    <string name="sendMess">Type a message…</string>
+    <string name="myname">Enter your display name</string>
+    <string name="myStatus">What\'s on your mind?</string>
+    <string name="upInfor">Update Info</string>
 </resources>

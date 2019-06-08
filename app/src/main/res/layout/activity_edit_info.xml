@@ -1,10 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/background_frag"
     tools:context=".EditInfoActivity">
+    <include
+        layout="@layout/bar_tool"
+        android:id="@+id/toolbar"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/editImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/user"
+            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_width="2dp"/>
 
-</android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/my_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/editImage"
+            android:layout_marginStart="10dp"
+            android:inputType="text"
+            android:hint="@string/myname"
+            tools:ignore="Autofill,LabelFor" />
+        <ImageButton
+            android:id="@+id/change_name"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/my_name"
+            android:layout_marginStart="-40dp"
+            tools:ignore="ContentDescription"
+            android:background="@drawable/ic_setting"/>
+        <ImageButton
+            android:id="@+id/change_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            tools:ignore="ContentDescription"
+            android:layout_below="@id/my_name"
+            android:layout_toEndOf="@id/editImage"
+            android:layout_marginStart="-40dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/ic_image"/>
+        <EditText
+            android:id="@+id/editStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_name"
+            android:layout_toEndOf="@id/editImage"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/myStatus"
+            android:inputType="text"
+            tools:ignore="Autofill" />
+        <ImageButton
+            android:id="@+id/change_status"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/editStatus"
+            android:layout_below="@id/my_name"
+            android:layout_marginStart="-40dp"
+            android:layout_marginTop="10dp"
+            tools:ignore="ContentDescription"
+            android:background="@drawable/ic_setting"/>
+    </RelativeLayout>
+    <Button
+        android:id="@+id/upInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_background"
+        android:text="@string/upInfor"
+        android:textAlignment="center"
+        android:textColor="#ffff"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="50dp"/>
+
+</LinearLayout>

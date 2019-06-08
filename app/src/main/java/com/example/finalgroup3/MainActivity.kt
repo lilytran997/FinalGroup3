@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 
+@Suppress("LocalVariableName")
 class MainActivity : AppCompatActivity() {
 
     lateinit var viewPager: ViewPager
@@ -43,9 +44,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-
                val users : Users = snapshot.getValue(Users::class.java)!!
-                if(users.ImageURL.equals("default")){
+                if(users.ImageURL == "default"){
                     mImage.setImageResource(R.drawable.user)
                 }else{
                     Glide.with(this@MainActivity)
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         viewPager = findViewById(R.id.main_views)
         tab_Layout = findViewById(R.id.tablayout)
-        val myViewStaticPageAdapter: ViewStaticPageAdapter = ViewStaticPageAdapter(supportFragmentManager)
+        val myViewStaticPageAdapter = ViewStaticPageAdapter(supportFragmentManager)
         myViewStaticPageAdapter.addFragment(ChatsFragment(),"Chats")
         myViewStaticPageAdapter.addFragment(UsersFragment(),"Users")
         viewPager.adapter = myViewStaticPageAdapter

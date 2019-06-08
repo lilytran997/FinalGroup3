@@ -21,11 +21,12 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_users.*
 
 
+@Suppress("PrivatePropertyName")
 class UsersFragment : Fragment() {
 
     var users: ArrayList<Users> = ArrayList()
     lateinit var userAdapter: UserAdapter
-    lateinit var UserDatabase: DatabaseReference
+    private lateinit var UserDatabase: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +49,7 @@ class UsersFragment : Fragment() {
                 users.clear()
                 for(data: DataSnapshot in dataSnapshot.children){
                     val user : Users? = data.getValue(Users::class.java)
-                    if(!user!!.id.equals(userId)){
+                    if(user!!.id != userId){
 
                         users.add(user)
                         userAdapter.notifyDataSetChanged()

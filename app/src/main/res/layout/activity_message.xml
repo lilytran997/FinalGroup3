@@ -70,13 +70,11 @@
 
     </android.support.design.widget.AppBarLayout>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/mess"
+        android:id="@+id/ListMess"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appbar"
         android:layout_above="@id/text_mess"/>
-
-
     <RelativeLayout
         android:id="@+id/text_mess"
         android:layout_width="match_parent"
