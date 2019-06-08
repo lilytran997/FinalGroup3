@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.bumptech.glide.Glide
 import com.example.finalgroup3.Fragment.ChatsFragment
 import com.example.finalgroup3.Fragment.UsersFragment
@@ -31,9 +32,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar!!.title = ""
+        auth = FirebaseAuth.getInstance()
 
         // Account Info
-        val User = FirebaseAuth.getInstance().currentUser
+        val User = auth.currentUser
         val user_id = User!!.uid
         database = FirebaseDatabase.getInstance().getReference("Users").child(user_id)
         database.addValueEventListener(object : ValueEventListener{
@@ -52,12 +54,13 @@ class MainActivity : AppCompatActivity() {
                         .into(mImage)
                 }
                 name.text = users.username
-                mImage.setOnClickListener {
+                name.setOnClickListener {
 
                     val intentP = Intent(this@MainActivity, ProfileActivity::class.java)
                     intentP.putExtra("userId",user_id)
                     startActivity(intentP)
                 }
+                my_profile.visibility = View.VISIBLE
             }
 
         })

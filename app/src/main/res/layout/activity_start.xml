@@ -6,16 +6,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".StartActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/bg">
 
     <ImageView
         android:layout_width="250dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:alpha="0.5"
+        android:layout_marginTop="80dp"
+        android:alpha="0.8"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/start" />
+        android:src="@drawable/message" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,13 +24,13 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:fontFamily="cursive"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/welcome"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#2948ff"
-        android:textSize="36sp"
-        android:textStyle="bold" />
+        android:textColor="#041A72"
+        android:textStyle="bold"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/btn_login"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/btn_background"
         android:text="@string/login"
@@ -60,12 +60,5 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:alpha="0.2"
-        android:scaleType="centerCrop"
-        android:src="@drawable/nn"
-        android:contentDescription="@string/app_name"/>
+
 </LinearLayout>

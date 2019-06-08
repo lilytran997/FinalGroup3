@@ -63,6 +63,7 @@ class RegisterActivity : AppCompatActivity() {
                     hashMap.put("id", userId)
                     hashMap.put("username", username)
                     hashMap.put("ImageURL", "default")
+                    hashMap.put("status", "Hi there, I'm using Aloha Chat App")
                     databaseReference.child(userId).setValue(hashMap)
                         .addOnCompleteListener(this) {
                             if (task.isSuccessful) {

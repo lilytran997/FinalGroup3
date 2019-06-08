@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,51 +11,91 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/bar_tool"/>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:alpha="0.9"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/message" />
     <TextView
         android:id="@+id/create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/create"
+        android:fontFamily="sans-serif-condensed"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#021B79"/>
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username"
-        android:hint="@string/hint_user"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:inputType="textPersonName" />
-    <EditText
+        android:layout_marginTop="20dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_user"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/todo" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/username"
+            android:hint="@string/hint_user"
+            android:textColor="#ffff"
+            android:layout_marginEnd="30dp"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textemail"
-        android:hint="@string/hint_email"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:inputType="textEmailAddress" />
-    <EditText
+        android:layout_marginTop="20dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_mail"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/todo" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textemail"
+            android:hint="@string/hint_email"
+            android:textColor="#ffff"
+            android:layout_marginEnd="30dp"
+            android:inputType="textEmailAddress" />
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textpass"
-        android:hint="@string/hint_pass"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:inputType="textPassword" />
-
+        android:layout_marginTop="20dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_pass"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/todo" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textpass"
+            android:hint="@string/hint_pass"
+            android:textColor="#ffff"
+            android:layout_marginEnd="30dp"
+            android:inputType="textPassword" />
+    </LinearLayout>
     <Button
         android:id="@+id/btn_reg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_background"
         android:text="@string/btn_reg"
         android:textAlignment="center"

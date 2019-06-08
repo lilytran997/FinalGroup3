@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_frag"
+    tools:context=".MessageActivity">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_bar"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/MenuStyle">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/mImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/user"
+                    app:civ_border_color="@color/colorPrimary"
+                    app:civ_border_width="4dp" />
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toRightOf="@id/mImage"
+                    android:textColor="#ffff"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="Name" />
+                <ImageView
+                    android:id="@+id/sttOn"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@id/name"
+                    android:layout_toEndOf="@id/mImage"
+                    tools:ignore="ContentDescription"
+                    android:background="@drawable/ic_on"
+                    android:layout_marginStart="-18dp"
+                    android:layout_marginBottom="12dp"
+                    android:visibility="gone"/>
+                <ImageView
+                    android:id="@+id/sttOff"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@id/name"
+                    android:layout_toEndOf="@id/mImage"
+                    tools:ignore="ContentDescription"
+                    android:background="@drawable/ic_off"
+                    android:layout_marginStart="-18dp"
+                    android:layout_marginBottom="12dp"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appbar"
+        android:layout_above="@id/text_mess"/>
+
+
+    <RelativeLayout
+        android:id="@+id/text_mess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_alignParentBottom="true"
+        android:background="#fff">
+        <EditText
+            android:id="@+id/eText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/sendText"
+            android:hint="@string/sendMess"
+            android:inputType="text"
+            android:layout_toStartOf="@+id/sendText"
+            tools:ignore="RtlHardcoded" />
+
+        <ImageButton
+            android:id="@+id/sendText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_send"
+            android:contentDescription="@string/todo"
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
+    </RelativeLayout>
+
+</RelativeLayout>
