@@ -18,17 +18,41 @@
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/MenuStyle">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/mImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/user"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp" />
             <RelativeLayout
+                android:id="@+id/mProfile"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp">
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/mImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/user"
+                    app:civ_border_color="#FF000000"
+                    app:civ_border_width="2dp" />
+                <ImageView
+                    android:id="@+id/sttOn"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@id/name"
+                    android:layout_toEndOf="@id/mImage"
+                    tools:ignore="ContentDescription"
+                    android:background="@drawable/ic_on"
+                    android:layout_marginStart="-15dp"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/sttOff"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@id/name"
+                    android:layout_alignParentBottom="false"
+                    android:layout_marginStart="-15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@id/mImage"
+                    android:background="@drawable/ic_off"
+                    tools:ignore="ContentDescription"
+                    android:visibility="gone"/>
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
@@ -36,6 +60,8 @@
                     android:textColor="#ffff"
                     android:textSize="24sp"
                     android:textStyle="bold"
+                    android:layout_toEndOf="@id/mImage"
+                    android:layout_marginStart="10dp"
                     tools:ignore="RtlHardcoded"
                     tools:text="Name" />
                 <TextView
@@ -44,6 +70,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/myprofile"
                     android:layout_below="@id/name"
+                    android:layout_toEndOf="@id/mImage"
+                    android:layout_marginStart="10dp"
                     android:textColor="#ffff"
                     android:visibility="gone"/>
             </RelativeLayout>

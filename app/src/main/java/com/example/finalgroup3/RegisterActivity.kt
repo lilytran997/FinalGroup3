@@ -36,10 +36,12 @@ class RegisterActivity : AppCompatActivity() {
         btn_reg.setOnClickListener(register)
     }
 
+    // Create an Account
     private val register = View.OnClickListener {
         val txt_user = username.text.toString()
         val txt_email = textemail.text.toString()
         val txt_pass = textpass.text.toString()
+
 
         if ((TextUtils.isEmpty(txt_user)) || (TextUtils.isEmpty(txt_email)) || (TextUtils.isEmpty(txt_pass))) {
             Toast.makeText(this, "All fileds are required", Toast.LENGTH_LONG).show()
@@ -49,9 +51,7 @@ class RegisterActivity : AppCompatActivity() {
             createAccount(txt_user, txt_email, txt_pass)
         }
 
-
     }
-
     private fun createAccount(username: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->

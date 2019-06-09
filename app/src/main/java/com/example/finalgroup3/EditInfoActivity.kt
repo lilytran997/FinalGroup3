@@ -32,6 +32,7 @@ class EditInfoActivity : AppCompatActivity() {
         supportActionBar!!.title = "Edit Profile"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        //get Data from FirebaseDatabase
         val current = FirebaseAuth.getInstance().currentUser
         currentId = current!!.uid
         UserDatabase = FirebaseDatabase.getInstance().getReference("Users").child(currentId)
@@ -40,13 +41,12 @@ class EditInfoActivity : AppCompatActivity() {
             override fun onCancelled(p0: DatabaseError) {
 
             }
-
             override fun onDataChange(snap: DataSnapshot) {
                 val User : Users = snap.getValue(Users::class.java)!!
                 if(User.ImageURL == "default"){
                     editImage.setImageResource(R.drawable.user)
                 }else{
-                    Glide.with(this@EditInfoActivity)
+                    Glide.with(applicationContext)
                         .load(User.ImageURL)
                         .centerCrop()
                         .into(editImage)
@@ -54,15 +54,16 @@ class EditInfoActivity : AppCompatActivity() {
                 my_name.setText(User.username)
                 editStatus.setText(User.status)
             }
-
         })
+        //delete name
         change_name.setOnClickListener {
             my_name.setText("")
         }
+        //delete status
         change_status.setOnClickListener {
             editStatus.setText("")
         }
-
+        // update avatar
         change_image.setOnClickListener {
             val galleryIntent = Intent()
             galleryIntent.type = "image/*"
@@ -70,13 +71,13 @@ class EditInfoActivity : AppCompatActivity() {
             startActivityForResult(Intent.createChooser(galleryIntent,"SELECT IMAGE"), GALLERY_PICK)
         }
 
+        // saved change
         upInfo.setOnClickListener {
             val txt_name = my_name.text.toString()
             val txt_status = editStatus.text.toString()
             updateName(txt_name,txt_status)
         }
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==GALLERY_PICK && resultCode== Activity.RESULT_OK){
@@ -90,9 +91,9 @@ class EditInfoActivity : AppCompatActivity() {
             val result:  CropImage.ActivityResult = CropImage.getActivityResult(data)
             if(resultCode == RESULT_OK){
                 val resultUri : Uri = result.uri
+                //  upload file and get a download URL
                 val  filepath: StorageReference = StorageImage.child("profile_image").child("$currentId.jpg")
                 val uploadTask: UploadTask = filepath.putFile(resultUri)
-
                 uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
                     if (!task.isSuccessful) {
                         task.exception?.let {
@@ -101,7 +102,7 @@ class EditInfoActivity : AppCompatActivity() {
                     }
                     return@Continuation filepath.downloadUrl
                 }).addOnCompleteListener {task ->
-
+                    // write link image to ImageURL children of node currentId
                     if(task.isSuccessful){
                         val download_Uri : Uri? = task.result
                         val downloadUrl: String = download_Uri.toString()
@@ -123,8 +124,8 @@ class EditInfoActivity : AppCompatActivity() {
             }
         }
     }
+    //Update data
     private fun updateName(txt_name: String, txt_status: String) {
-
         UserDatabase.child("username").setValue(txt_name)
             .addOnCompleteListener{
                 UserDatabase.child("status").setValue(txt_status)

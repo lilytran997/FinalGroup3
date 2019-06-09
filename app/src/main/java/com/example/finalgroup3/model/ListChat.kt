@@ -1,4 +1,5 @@
 package com.example.finalgroup3.model
 
-class ListChat {
+class ListChat(val id:  String) {
+    constructor():this("")
 }

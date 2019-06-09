@@ -24,10 +24,11 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar!!.title = "Login"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         Log.d("kiem tra Activity", "Login")
-
         auth = FirebaseAuth.getInstance()
         btn_log.setOnClickListener(login)
     }
+
+    // login to an Account
     private val login = View.OnClickListener {
         val text_email: String = email.text.toString()
         val text_pass: String = pass.text.toString()
@@ -46,13 +47,11 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                 } else {
                     // If sign in fails, display a message to the user.
-
                     Toast.makeText(
                         baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
             }
         }
     }

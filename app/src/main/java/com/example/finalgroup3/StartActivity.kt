@@ -17,17 +17,21 @@ class StartActivity : AppCompatActivity() {
         btn_login.setOnClickListener(intentLogin)
         btn_regster.setOnClickListener(intentRegister)
     }
+    // Do you have an account?
     private val intentLogin = View.OnClickListener {
         val intent_log = Intent(this,LoginActivity::class.java )
         startActivity(intent_log)
     }
+    //Do you want to register?
     private val intentRegister = View.OnClickListener {
         val intent_reg = Intent(this,RegisterActivity::class.java )
         startActivity(intent_reg)
     }
+
+    // Check if user is signed in (non-null) and intent MainActivity
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
+        // Check if user is signed in (non-null)
         val cUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
         if(cUser!=null){
             val intentMain = Intent(this, MainActivity::class.java)

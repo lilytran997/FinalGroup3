@@ -30,12 +30,12 @@ class UsersFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         addUser()
         userAdapter = UserAdapter(users,activity,false)
 
     }
 
+    // get Data user
     private fun addUser() {
         val mUser = FirebaseAuth.getInstance().currentUser
         val userId = mUser!!.uid
@@ -59,6 +59,7 @@ class UsersFragment : Fragment() {
             }
         })
     }
+    // Get Layout Fragment
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,6 +68,7 @@ class UsersFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_users, container, false)
     }
 
+    // Set LayoutManager and set onclick item
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listUser.layoutManager = LinearLayoutManager(context)

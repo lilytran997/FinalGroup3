@@ -28,43 +28,41 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tab_Layout: TabLayout
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var user_id :String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar!!.title = ""
         auth = FirebaseAuth.getInstance()
+        sttOn.visibility = View.VISIBLE
+        sttOff.visibility=View.GONE
 
         // Account Info
         val User = auth.currentUser
-        val user_id = User!!.uid
+        user_id= User!!.uid
         database = FirebaseDatabase.getInstance().getReference("Users").child(user_id)
         database.addValueEventListener(object : ValueEventListener{
             override fun onCancelled(snapshot: DatabaseError) {
             }
-
             override fun onDataChange(snapshot: DataSnapshot) {
                val users : Users = snapshot.getValue(Users::class.java)!!
                 if(users.ImageURL == "default"){
                     mImage.setImageResource(R.drawable.user)
                 }else{
-                    Glide.with(this@MainActivity)
+                    Glide.with(applicationContext)
                         .load(users.ImageURL)
                         .centerCrop()
                         .into(mImage)
                 }
                 name.text = users.username
-                name.setOnClickListener {
-
+                mProfile.setOnClickListener {
                     val intentP = Intent(this@MainActivity, ProfileActivity::class.java)
-                    intentP.putExtra("userId",user_id)
                     startActivity(intentP)
                 }
                 my_profile.visibility = View.VISIBLE
             }
-
         })
-
         viewPager = findViewById(R.id.main_views)
         tab_Layout = findViewById(R.id.tablayout)
         val myViewStaticPageAdapter = ViewStaticPageAdapter(supportFragmentManager)
@@ -147,6 +145,24 @@ class MainActivity : AppCompatActivity() {
         val intentStart = Intent(this, StartActivity::class.java)
         startActivity(intentStart)
         finish()
+
+    }
+    override fun onResume(){
+        super.onResume()
+        status("online")
+    }
+    override fun onPause(){
+        super.onPause()
+        status("offline")
+        sttOff.visibility = View.VISIBLE
+        sttOn.visibility=View.GONE
+    }
+
+    private fun status(onOff: String) {
+        val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user_id)
+        val hashMap: HashMap<String, Any> = HashMap()
+        hashMap["OnOffline"]=onOff
+        reference.updateChildren(hashMap)
 
     }
 }
