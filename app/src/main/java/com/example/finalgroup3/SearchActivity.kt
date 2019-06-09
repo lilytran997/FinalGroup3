@@ -28,11 +28,11 @@ class SearchActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar!!.title = ""
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        // setup searchview
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = findViewById<SearchView>(R.id.searchView)
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.setIconifiedByDefault(false)
-        //searchView.isSubmitButtonEnabled = true
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                val searchQuery = query.toString()
@@ -45,9 +45,12 @@ class SearchActivity : AppCompatActivity() {
                 return true
             }
         })
+        // setup LayoutManager and RecyclerView
         searchResult.layoutManager = LinearLayoutManager(this@SearchActivity)
         searchAdapter = UserAdapter(searchUser,this@SearchActivity,false)
         searchResult.adapter = searchAdapter
+
+        // set on click item
         searchAdapter.setClickListener(object:ClickListenner{
             override fun onClick(position: Int) {
                 val builder =  AlertDialog.Builder(this@SearchActivity)
@@ -70,6 +73,7 @@ class SearchActivity : AppCompatActivity() {
         })
     }
 
+    //result after submitted
     private fun resultSearch(searchQuery: String) {
         val fuser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
         val query: Query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("username")
@@ -97,6 +101,7 @@ class SearchActivity : AppCompatActivity() {
             }
         })
     }
+    //result while was searching...
     private fun addUserResult(searchQuery: String) {
         val fuser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
         val query: Query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("username")

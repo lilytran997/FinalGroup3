@@ -5,12 +5,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_frag"
     tools:context=".Fragment.ChatsFragment">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/listChat"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshChat"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listChat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 </FrameLayout>

@@ -29,6 +29,16 @@ class UserAdapter(private var items: ArrayList<Users>, private val content: Cont
 
         return UserViewHolder(LayoutInflater.from(content).inflate(R.layout.item_user,parent,false))
     }
+    //clear data
+    fun clear(){
+        items.clear()
+        notifyDataSetChanged()
+    }
+    //update RecyclerView
+    fun updateList(list:ArrayList<Users>){
+        items.addAll(list)
+        notifyDataSetChanged()
+    }
 
     // get size List
     override fun getItemCount(): Int {

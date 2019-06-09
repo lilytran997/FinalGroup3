@@ -5,12 +5,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_frag"
     tools:context=".Fragment.UsersFragment">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/listUser"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-    </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 

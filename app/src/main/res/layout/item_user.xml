@@ -48,7 +48,7 @@
         android:layout_toEndOf="@+id/user"
         android:src="@drawable/ic_on"
         android:visibility="gone"
-        android:layout_marginStart="-20dp" />
+        android:layout_marginStart="-25dp" />
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/stt_off"
         android:layout_width="20dp"
@@ -58,5 +58,5 @@
         android:src="@drawable/ic_off"
         android:layout_marginTop="20dp"
         android:visibility="gone"
-        android:layout_marginStart="-20dp" />
+        android:layout_marginStart="-25dp" />
 </RelativeLayout>
