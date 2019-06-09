@@ -1,5 +1,7 @@
 package com.example.finalgroup3
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,10 +11,12 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.ViewPager
+import android.support.v7.widget.SearchView
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.finalgroup3.Fragment.ChatsFragment
 import com.example.finalgroup3.Fragment.UsersFragment
@@ -88,16 +92,11 @@ class MainActivity : AppCompatActivity() {
                 ft.commit()
             }
         })
-
-
     }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
-
         return true
     }
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when(item?.itemId){
@@ -107,7 +106,11 @@ class MainActivity : AppCompatActivity() {
                 finish()
                 return true
             }
-
+            R.id.search->{
+                val intent = Intent(this@MainActivity, SearchActivity::class.java)
+                startActivity(intent)
+                return true
+            }
         }
         return false
     }
@@ -147,9 +150,12 @@ class MainActivity : AppCompatActivity() {
         finish()
 
     }
+    // status...
     override fun onResume(){
         super.onResume()
         status("online")
+        sttOn.visibility = View.VISIBLE
+        sttOff.visibility=View.GONE
     }
     override fun onPause(){
         super.onPause()
@@ -157,12 +163,10 @@ class MainActivity : AppCompatActivity() {
         sttOff.visibility = View.VISIBLE
         sttOn.visibility=View.GONE
     }
-
     private fun status(onOff: String) {
         val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user_id)
         val hashMap: HashMap<String, Any> = HashMap()
         hashMap["OnOffline"]=onOff
         reference.updateChildren(hashMap)
-
     }
 }
