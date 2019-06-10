@@ -121,7 +121,6 @@ class MainActivity : AppCompatActivity() {
             R.id.logout ->{
                 FirebaseAuth.getInstance().signOut()
                 sendtoStart()
-                finish()
                 return true
             }
             R.id.search->{

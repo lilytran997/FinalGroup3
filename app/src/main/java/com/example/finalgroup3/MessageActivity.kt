@@ -31,8 +31,8 @@ class MessageActivity : AppCompatActivity() {
     var listMessage:ArrayList<message> = ArrayList()
     private lateinit var currentId: String
     private lateinit var seenListenner: ValueEventListener
-    internal var notify: Boolean? = false
-    private lateinit var userId: String
+    private  var notify: Boolean? = false
+    lateinit var userId: String
     private lateinit var apiService: APIService
     private val Client = client()
     private lateinit var tokendatabase: DatabaseReference
@@ -131,7 +131,7 @@ class MessageActivity : AppCompatActivity() {
     }
 
     //seen Message
-    private fun seenMessage(userId: String?) {
+    private fun seenMessage(receiver: String?) {
         ChatReference = FirebaseDatabase.getInstance().getReference("Chats")
         seenListenner = ChatReference.addValueEventListener(object:ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
@@ -140,7 +140,7 @@ class MessageActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for(data:DataSnapshot in snapshot.children){
                     val chats: message = data.getValue(message::class.java)!!
-                    if(chats.receiver==currentId && chats.sender==userId){
+                    if(chats.receiver==currentId && chats.sender==receiver){
                         val hashmap: HashMap<String,Any> = HashMap()
                         hashmap["isseen"]=true
                         data.ref.updateChildren(hashmap)
@@ -181,11 +181,12 @@ class MessageActivity : AppCompatActivity() {
                 }
             }
         })
+        val message: String = mess
         userReference = FirebaseDatabase.getInstance().getReference("Users").child(currentId)
         userReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user = dataSnapshot.getValue(Users::class.java)!!
-                sendNotification(userId, user.username, mess)
+                sendNotification(userId, user.username, message)
                 notify = false
             }
 

@@ -18,27 +18,28 @@ import com.google.firebase.messaging.RemoteMessage
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         super.onMessageReceived(remoteMessage)
+        remoteMessage?.data?.isNotEmpty()?.let {
 
-        val sent = remoteMessage?.data!!["sent"]
+            val sent = remoteMessage.data["sent"]
 
-        val firebaseUser = FirebaseAuth.getInstance().currentUser
-        assert(sent != null)
-        if (firebaseUser != null && sent == firebaseUser.uid) {
-            sendNotifications(remoteMessage)
+            val firebaseUser = FirebaseAuth.getInstance().currentUser
+            if (!(firebaseUser == null || sent != firebaseUser.uid)) {
+                sendNotifications(remoteMessage)
+            }
         }
 
     }
 
-    private fun sendNotifications(remoteMessage: RemoteMessage?) {
-        val user = remoteMessage?.data!!["user"]
-        val icon = remoteMessage.data!!["icon"]
+    private fun sendNotifications(remoteMessage: RemoteMessage) {
+        val user = remoteMessage.data["user"]
+        val icon = remoteMessage.data["icon"]
         val title = remoteMessage.data["title"]
         val body = remoteMessage.data["body"]
         val notification = remoteMessage.notification
         val j = Integer.parseInt(user!!.replace("[\\D]".toRegex(), ""))
         val intent = Intent(this, MessageActivity::class.java)
         val bundle = Bundle()
-        bundle.putString("user_id", user)
+        bundle.putString("userId", user)
         intent.putExtras(bundle)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, j, intent, PendingIntent.FLAG_ONE_SHOT)
