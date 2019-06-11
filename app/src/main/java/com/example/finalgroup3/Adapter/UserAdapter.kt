@@ -1,5 +1,9 @@
 package com.example.finalgroup3.Adapter
 
+
+
+
+import com.example.finalgroup3.Adapter.ClickListenner
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
@@ -90,7 +94,7 @@ class UserAdapter(private var items: ArrayList<Users>, private val content: Cont
     private fun TheLastMessage(userId: String, mess: TextView) {
         thelastmess = "default"
         val current = FirebaseAuth.getInstance().currentUser
-        val mId = current!!.uid
+        val mId = current?.uid
         val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Chats")
         reference.addValueEventListener(object: ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
@@ -99,7 +103,7 @@ class UserAdapter(private var items: ArrayList<Users>, private val content: Cont
             override fun onDataChange(datasnap: DataSnapshot) {
                 for(data: DataSnapshot in datasnap.children){
                     val chat: message = data.getValue(message::class.java)!!
-                    if(chat.sender == mId && chat.receiver == userId ||
+                    if(chat.sender  == mId && chat.receiver == userId ||
                         chat.receiver == mId && chat.sender == userId){
                         thelastmess = chat.message
                     }
