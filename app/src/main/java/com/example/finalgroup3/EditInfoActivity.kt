@@ -24,7 +24,7 @@ class EditInfoActivity : AppCompatActivity() {
     private lateinit var UserDatabase: DatabaseReference
     private lateinit var StorageImage: StorageReference
     private val GALLERY_PICK : Int = 1
-    private lateinit var currentId:String
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +32,13 @@ class EditInfoActivity : AppCompatActivity() {
         setSupportActionBar(this.findViewById(R.id.toolbar))
         supportActionBar!!.title = "Edit Profile"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        auth = FirebaseAuth.getInstance()
         //get Data from FirebaseDatabase
         val current = FirebaseAuth.getInstance().currentUser
-        currentId = current!!.uid
-        UserDatabase = FirebaseDatabase.getInstance().getReference("Users").child(currentId)
+        val currentId = current!!.uid
+        UserDatabase = FirebaseDatabase.getInstance().getReference("Users")
         StorageImage = FirebaseStorage.getInstance().reference
-        UserDatabase.addValueEventListener(object:ValueEventListener{
+        UserDatabase.child(currentId).addValueEventListener(object:ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
 
             }
@@ -85,6 +85,8 @@ class EditInfoActivity : AppCompatActivity() {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        val current = auth.currentUser
+        val currentId = current!!.uid
         if(requestCode==GALLERY_PICK && resultCode== Activity.RESULT_OK){
 
             val imageUri: Uri? = data?.data
@@ -131,9 +133,11 @@ class EditInfoActivity : AppCompatActivity() {
     }
     //Update data
     private fun updateName(txt_name: String, txt_status: String) {
-        UserDatabase.child("username").setValue(txt_name)
+        val current = auth.currentUser
+        val currentId = current!!.uid
+        UserDatabase.child(currentId).child("username").setValue(txt_name)
             .addOnCompleteListener{
-                UserDatabase.child("status").setValue(txt_status)
+                UserDatabase.child(currentId).child("status").setValue(txt_status)
                     .addOnSuccessListener {
                         Toast.makeText(this@EditInfoActivity, "Informations were updated Successfully ", Toast.LENGTH_SHORT).show()
                         val intentP = Intent(this@EditInfoActivity,ProfileActivity::class.java)

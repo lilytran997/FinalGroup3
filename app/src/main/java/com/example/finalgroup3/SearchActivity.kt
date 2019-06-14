@@ -40,6 +40,8 @@ class SearchActivity : AppCompatActivity() {
                 return true
             }
             override fun onQueryTextChange(query: String?): Boolean {
+                searchResult.visibility = View.VISIBLE
+                nullResult.visibility = View.GONE
                 val searchQuery = query.toString()
                 addUserResult(searchQuery)
                 return true
@@ -87,6 +89,8 @@ class SearchActivity : AppCompatActivity() {
                     for(data: DataSnapshot in dataSnapshot.children){
                         val user : Users = data.getValue(Users::class.java)!!
                         if(user.id!= fuser!!.uid){
+                            searchResult.visibility = View.VISIBLE
+                            nullResult.visibility = View.GONE
                             searchUser.add(user)
                             searchAdapter.notifyDataSetChanged()
                         }

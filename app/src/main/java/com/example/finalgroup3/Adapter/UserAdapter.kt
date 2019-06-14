@@ -3,7 +3,6 @@ package com.example.finalgroup3.Adapter
 
 
 
-import com.example.finalgroup3.Adapter.ClickListenner
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface

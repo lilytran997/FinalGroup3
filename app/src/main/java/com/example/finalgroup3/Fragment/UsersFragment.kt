@@ -1,4 +1,4 @@
-package com.example.finalgroup3.Fragment
+package com .example.finalgroup3.Fragment
 
 
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import com.example.finalgroup3.model.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_users.*
+import java.io.Console
 
 
 @Suppress("PrivatePropertyName")
@@ -42,7 +44,7 @@ class UsersFragment : Fragment() {
     private fun addUser() {
         val mUser = FirebaseAuth.getInstance().currentUser
         val userId = mUser!!.uid
-        UserDatabase = FirebaseDatabase.getInstance().getReference("Users")
+        UserDatabase = FirebaseDatabase.getInstance().reference.child("Users")
         UserDatabase.addValueEventListener(object : ValueEventListener{
             override fun onCancelled(databaseError: DatabaseError) {
 
@@ -50,8 +52,9 @@ class UsersFragment : Fragment() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 users.clear()
-                for(data: DataSnapshot in dataSnapshot.children){
-                    val user : Users? = data.getValue(Users::class.java)
+                for(userSnap: DataSnapshot in dataSnapshot.children){
+                    Log.e("Kiem tra data", userSnap.toString())
+                    val user : Users ? = userSnap.getValue(Users::class.java)
                     if(user!!.id != userId){
                         users.add(user)
                         userAdapter.notifyDataSetChanged()
@@ -111,23 +114,22 @@ class UsersFragment : Fragment() {
         }
 
         // set color refreshicon
-        refreshUser.setColorSchemeResources(android.R.color.holo_blue_bright,
-            android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light)
+        refreshUser.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light)
     }
     // update List
     var UserRefresh: ArrayList<Users> = ArrayList()
     private fun RefreshUsers() {
         val mUser = FirebaseAuth.getInstance().currentUser
         val userId = mUser!!.uid
-        UserDatabase = FirebaseDatabase.getInstance().getReference("Users")
+        UserDatabase = FirebaseDatabase.getInstance().reference.child("Users")
         UserDatabase.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onCancelled(databaseError: DatabaseError) {
 
             }
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 UserRefresh.clear()
-                for(data: DataSnapshot in dataSnapshot.children){
-                    val user : Users? = data.getValue(Users::class.java)
+                for(dataFresh: DataSnapshot in dataSnapshot.children){
+                    val user : Users? = dataFresh.getValue(Users::class.java)
                     if(user!!.id != userId){
                         UserRefresh.add(user)
                     }
