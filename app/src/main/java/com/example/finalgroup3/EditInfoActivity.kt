@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.finalgroup3.model.Users
@@ -58,10 +59,14 @@ class EditInfoActivity : AppCompatActivity() {
         //delete name
         change_name.setOnClickListener {
             my_name.setText("")
+            change_name.visibility = View.GONE
+            Edname.visibility = View.VISIBLE
         }
         //delete status
         change_status.setOnClickListener {
             editStatus.setText("")
+            change_status.visibility = View.GONE
+            Edstatus.visibility = View.VISIBLE
         }
         // update avatar
         change_image.setOnClickListener {
