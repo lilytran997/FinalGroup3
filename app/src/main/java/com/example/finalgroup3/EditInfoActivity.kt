@@ -133,11 +133,12 @@ class EditInfoActivity : AppCompatActivity() {
     }
     //Update data
     private fun updateName(txt_name: String, txt_status: String) {
+        val userReferece: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
         val current = auth.currentUser
         val currentId = current!!.uid
-        UserDatabase.child(currentId).child("username").setValue(txt_name)
+        userReferece.child(currentId).child("username").setValue(txt_name)
             .addOnCompleteListener{
-                UserDatabase.child(currentId).child("status").setValue(txt_status)
+                userReferece.child(currentId).child("status").setValue(txt_status)
                     .addOnSuccessListener {
                         Toast.makeText(this@EditInfoActivity, "Informations were updated Successfully ", Toast.LENGTH_SHORT).show()
                         val intentP = Intent(this@EditInfoActivity,ProfileActivity::class.java)
